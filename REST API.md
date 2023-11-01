@@ -17,11 +17,12 @@ Response:
 }
 ```
 
+```http request
 POST /login
 
 {
-login,
-password
+  login,
+  password
 }
 
 Response:
@@ -30,13 +31,17 @@ Response:
 - 500
 
 {
-error_message: $message
+  error_message: $message
 }
+```
 
 # Customer REST API
 
+```http request
 GET /orders
+```
 
+```
 Header:
 - x-auth-token: $token
 
@@ -44,69 +49,90 @@ Header:
 - 401 (access denied)
 - 500
 - 400
+```
 
+```json
 {
-orders: [
-{
-id: 1,
-restraunt: {
-name
-},
-timestamp,
-items: [
-{
-price, quantity, description, image
+  "orders": [
+    {
+      "id": 1,
+      "restraunt": {
+        "name": "name"
+      },
+      "timestamp": "",
+      "items": [
+        {
+          "price": 123,
+          "quantity":  123,
+          "description":  "description",
+          "image": "image_path"
+        }
+      ]
+    }
+  ],
+  "page_index": 0,
+  "page_count": 10
 }
-]
-}
-],
-page_index: 0,
-page_count: 10
-}
+```
 
+```http request
 GET /order/${id}
-
+```
+```status code
 - 200
 - 400
 - 401 (access denied)
 - 404
 - 500
+```
 
 ResponseBody
 
+```json
 {
-id: 1,
-restraunt: {
-name
-},
-timestamp,
-items: [
-{
-price, quantity, description, image
+  "id": 1,
+  "restraunt": {
+    "name": "name"
+  },
+  "timestamp": 123,
+  "items": [
+    {
+      "price": 123,
+      "quantity": 213,
+      "description": "desc",
+      "image": "image_path"
+    }
+  ]
 }
-]
-}
+```
 
 GraphQL
-
-
+```http request
 POST /order
+```
 
+```json
 {
-restraunt_id,
-menu_items: [
-{quantity, menu_item_id}
-]
+  "restraunt_id": 1,
+  "menu_items": [
+    {
+      "quantity": 1,
+      "menu_item_id": 2
+    }
+  ]
 }
-
+```
 Response:
 
+```json
 OK
+
 {
-id,
-secret_payment_url,
-estimated_time_of_arrival
+  "id": 1,
+  "secret_payment_url": "url",
+  "estimated_time_of_arrival": 123
 }
+```
 
 ---
 
@@ -136,6 +162,7 @@ order_action: deny/accept/complete
 }
 
 Response:
+
 - 200
 - 400
 - 401 (access denied)
@@ -170,6 +197,7 @@ page_count: 10
 }
 
 Response:
+
 - 200
 - 400
 - 401 (access denied)
@@ -185,6 +213,7 @@ order_action: accept/complete
 }
 
 Response:
+
 - 200
 - 400
 - 401 (access denied)
