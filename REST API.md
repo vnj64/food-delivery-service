@@ -4,10 +4,8 @@
 POST /register
 
 {
-email, phone, name, role
+  email, phone, name, role
 }
-```
-
 
 Response:
 - 201, {id}
@@ -15,8 +13,9 @@ Response:
 - 500
 
 {
-error_message: $message
+  error_message: $message
 }
+```
 
 POST /login
 
