@@ -138,95 +138,118 @@ OK
 
 # Restaurant REST API
 
+```http request
 GET /orders?status=active/complete/denied
-
+```
 Response:
-{
-orders: [
-{
-id,
-menu_items: [
-{quantity, menu_item_id}
-]            
-}
-],
-page_index: 0,
-page_count: 10
-}
 
+```json
+{
+  "orders": [
+    {
+      "id": 1,
+      "menu_items": [
+        {
+          "quantity": 1,
+          "menu_item_id": 2
+        }
+      ]
+    }
+  ],
+  "page_index": 0,
+  "page_count": 10
+}
+```
+
+```http request
 POST (patch?) /order/${id}/
+```
 
 Request body:
+```json
 {
-order_action: deny/accept/complete
+"order_action": "deny/accept/complete"
 }
-
+```
 Response:
 
+```
 - 200
 - 400
 - 401 (access denied)
 - 403 (forbidden)
 - 404
 - 500
+```
 
 ---
 
 # Courier REST API
 
+```http request
 GET /deliveries?status=active/complete
-
-Response:
-{
-delivery: [
-{
-order_id,
-restraunt: {
-address,
-distance
-}         
-customer: {
-address,
-distance
-},
-payment
-}
-],
-page_index: 0,
-page_count: 10
-}
+```
 
 Response:
 
+```json
+{
+  "delivery": [
+    {
+      "order_id": 1,
+      "restraunt": {
+        "address": "sad",
+        "distance": 100
+      }
+      "customer": {
+        "address": "sad",
+        "distance": 11
+      },
+      "payment": 120
+    }
+  ],
+  "page_index": 0,
+  "page_count": 10
+}
+```
+
+Response:
+```
 - 200
 - 400
 - 401 (access denied)
 - 500
-
+```
 ---
 
+```http request
 POST (patch?) /develiry/${id}/
+```
 
 Request body:
+```json
 {
-order_action: accept/complete
+  "order_action": "accept/complete"
 }
-
+```
 Response:
 
+```
 - 200
 - 400
 - 401 (access denied)
 - 403 (forbidden)
 - 404
 - 500
+```
 
 ---
 
 RabbitMQ queue schema (logitics)
-
+```
 - Queue (producer, consumer)
 - Fanout (?)
 - 1 queue - 1 data type (model)
 - EMAIL_SENDING_QUEUE, EMAIL_SENDING_QUEUE_V2
 - RabbitMQ cookbook, RabbitMQ best practices
+```
