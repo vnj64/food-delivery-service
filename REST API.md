@@ -200,7 +200,7 @@ Response:
       "restraunt": {
         "address": "sad",
         "distance": 100
-      }
+      },
       "customer": {
         "address": "sad",
         "distance": 11
