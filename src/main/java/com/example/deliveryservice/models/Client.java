@@ -1,20 +1,18 @@
-package com.example.deliveryservice;
+package com.example.deliveryservice.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.Table;
+import lombok.*;
 
 import java.io.Serializable;
 
-@Entity(name = "client")
-@Getter
-@Setter
+@Data
+@Entity
 @ToString
 @NoArgsConstructor
+@Table(name = "clients")
 public class Client implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -30,4 +28,5 @@ public class Client implements Serializable {
 
     @Column(name = "address")
     private String address;
+
 }
